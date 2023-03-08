@@ -170,7 +170,7 @@ function App() {
       {gameFinished ? (
         <div className="absolute h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-80 text-white">
           <div className="bg-gray-600 rounded-md flex flex-col p-12 items-center justify-center">
-            <h5 className="text-[3rem] mb-12">GAME OVER</h5>
+            <h5 className="text-[3rem] mb-12">FINISHED!</h5>
             <h6 className="text-lg mb-6">Your score:</h6>
             <p className="flex items-center">
               Moves: <span className="font-bold text-2xl pl-6">{steps}</span>
