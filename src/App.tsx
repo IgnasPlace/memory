@@ -166,9 +166,9 @@ function App() {
   }, [gameStarted]);
 
   return (
-    <div className="flex flex-col justify-between min-h-[100dvh] max-w-[500px] mx-auto dark:bg-neutral-800">
+    <>
       {gameFinished ? (
-        <div className="absolute h-screen w-screen max-w-[500px] flex flex-col items-center justify-center bg-black bg-opacity-80 text-white">
+        <div className="absolute h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-80 text-white">
           <div className="bg-gray-600 rounded-md flex flex-col p-12 items-center justify-center">
             <h5 className="text-[3rem] mb-12">GAME OVER</h5>
             <h6 className="text-lg mb-6">Your score:</h6>
@@ -192,7 +192,7 @@ function App() {
         </div>
       ) : null}
       {menuOpened ? (
-        <div className="absolute h-screen w-screen max-w-[500px] flex flex-col items-center justify-center bg-black bg-opacity-80">
+        <div className="absolute h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-80">
           <div className=" bg-gray-600 rounded-md flex flex-col p-12 items-center justify-center">
             <label
               htmlFor="game-difficulty"
@@ -220,72 +220,74 @@ function App() {
           </div>
         </div>
       ) : null}
-      <header className="py-6 px-6 flex justify-between">
-        <h1 className="font-bold font-mono text-2xl text-blue-600">memo</h1>
-        <div>
-          <button
-            onClick={gameInit}
-            className="bg-orange-400 hover:bg-orange-600 transition-colors duration-300 text-white font-bold py-1 px-3 rounded-full"
-          >
-            RESTART
-          </button>
-          <button
-            className=" bg-green-600 hover:bg-green-500 transition-colors duration-300 text-white font-bold py-1 ml-3 px-3 rounded-full"
-            onClick={() => setMenuOpened((prev) => !prev)}
-          >
-            LEVELS
-          </button>
-        </div>
-      </header>
-      <main className="h-toWidth max-w-[500px] max-h-[500px] w-full flex flex-col gap-1 items-center justify-center p-2 sm:p-6">
-        {grid?.map((arr, i) => {
-          return (
-            <div
-              className={`flex items-center h-1/4 justify-center w-full gap-1`}
-              key={i}
+      <div className="flex flex-col justify-between min-h-[100dvh] max-w-[500px] mx-auto dark:bg-neutral-800">
+        <header className="py-6 px-6 flex justify-between">
+          <h1 className="font-bold font-mono text-2xl text-blue-600">memo</h1>
+          <div>
+            <button
+              onClick={gameInit}
+              className="bg-orange-400 hover:bg-orange-600 transition-colors duration-300 text-white font-bold py-1 px-3 rounded-full"
             >
-              {arr.map((number, j) => {
-                return (
-                  <button
-                    className={`w-1/4 h-full group flex items-center justify-center rounded-xl text-white text-3xl ${
-                      defaultGridSize === 6 ? "text-2xl" : ""
-                    } ${
-                      defaultGridSize === 8 ? "text-xl" : ""
-                    } transition-colors duration-200 ${
-                      number.opened ? "bg-green-600" : "bg-blue-600"
-                    } ${number.guessed ? "bg-orange-400" : ""}`}
-                    key={number.id}
-                    id={number.id.toString()}
-                    onClick={(e) => handleCardClick(e, number)}
-                    disabled={number.disabled}
-                  >
-                    <p
-                      className={
-                        number.guessed || number.opened ? "inline" : "hidden"
-                      }
+              RESTART
+            </button>
+            <button
+              className=" bg-green-600 hover:bg-green-500 transition-colors duration-300 text-white font-bold py-1 ml-3 px-3 rounded-full"
+              onClick={() => setMenuOpened((prev) => !prev)}
+            >
+              LEVELS
+            </button>
+          </div>
+        </header>
+        <main className="h-toWidth max-w-[500px] max-h-[500px] w-full flex flex-col gap-1 items-center justify-center p-2 sm:p-6">
+          {grid?.map((arr, i) => {
+            return (
+              <div
+                className={`flex items-center h-1/4 justify-center w-full gap-1`}
+                key={i}
+              >
+                {arr.map((number, j) => {
+                  return (
+                    <button
+                      className={`w-1/4 h-full group flex items-center justify-center rounded-xl text-white text-3xl ${
+                        defaultGridSize === 6 ? "text-2xl" : ""
+                      } ${
+                        defaultGridSize === 8 ? "text-xl" : ""
+                      } transition-colors duration-200 ${
+                        number.opened ? "bg-green-600" : "bg-blue-600"
+                      } ${number.guessed ? "bg-orange-400" : ""}`}
+                      key={number.id}
+                      id={number.id.toString()}
+                      onClick={(e) => handleCardClick(e, number)}
+                      disabled={number.disabled}
                     >
-                      {number.value}
-                    </p>
-                  </button>
-                );
-              })}
-            </div>
-          );
-        })}
-      </main>
-      <footer className="flex gap-1">
-        <div className="bg-blue-200 dark:bg-gray-600 w-1/2 my-6 ml-2 sm:ml-6 mr-0 py-3 flex flex-col items-center rounded-md">
-          <p>Time</p>
-          <p className="text-2xl font-bold">
-            {Math.floor(time / 60)}:{(time % 60).toString().padStart(2, "0")}
-          </p>
-        </div>
-        <div className="bg-blue-200 dark:bg-gray-600 w-1/2 my-6 mr-2 sm:mr-6 ml-0 py-3 flex flex-col items-center rounded-md">
-          <p>Moves</p>
-          <p className="text-2xl font-bold">{steps}</p>
-        </div>
-      </footer>
-    </div>
+                      <p
+                        className={
+                          number.guessed || number.opened ? "inline" : "hidden"
+                        }
+                      >
+                        {number.value}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </main>
+        <footer className="flex gap-1">
+          <div className="bg-blue-200 dark:bg-gray-600 w-1/2 my-6 ml-2 sm:ml-6 mr-0 py-3 flex flex-col items-center rounded-md">
+            <p>Time</p>
+            <p className="text-2xl font-bold">
+              {Math.floor(time / 60)}:{(time % 60).toString().padStart(2, "0")}
+            </p>
+          </div>
+          <div className="bg-blue-200 dark:bg-gray-600 w-1/2 my-6 mr-2 sm:mr-6 ml-0 py-3 flex flex-col items-center rounded-md">
+            <p>Moves</p>
+            <p className="text-2xl font-bold">{steps}</p>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 }
 
