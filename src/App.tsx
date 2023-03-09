@@ -168,7 +168,7 @@ function App() {
   return (
     <>
       {gameFinished ? (
-        <div className="absolute h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-80 text-white">
+        <div className="fixed h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-80 text-white">
           <div className="bg-gray-600 rounded-md flex flex-col p-12 items-center justify-center">
             <h5 className="text-[3rem] mb-12">FINISHED!</h5>
             <h6 className="text-lg mb-6">Your score:</h6>
@@ -192,7 +192,7 @@ function App() {
         </div>
       ) : null}
       {menuOpened ? (
-        <div className="absolute h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-80">
+        <div className="fixed h-screen w-screen flex flex-col items-center justify-center bg-black bg-opacity-80">
           <div className=" bg-gray-600 rounded-md flex flex-col p-12 items-center justify-center">
             <label
               htmlFor="game-difficulty"
