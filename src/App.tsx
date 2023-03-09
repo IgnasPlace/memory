@@ -184,7 +184,7 @@ function App() {
             </p>
             <button
               onClick={gameInit}
-              className="bg-orange-400 hover:bg-green-600 transition-colors duration-300 font-bold mt-12 py-1 px-3 rounded-full"
+              className="tracking-wider bg-teal-800 hover:bg-teal-700 border-2 hover:border-teal-100 border-opacity-50 transition-colors duration-300 font-bold mt-12 py-1 px-3 rounded-full"
             >
               PLAY AGAIN
             </button>
@@ -213,66 +213,71 @@ function App() {
             </select>
             <button
               onClick={gameInit}
-              className="bg-orange-400 hover:bg-green-600 transition-colors duration-300 text-white font-bold mt-12 py-1 px-3 rounded-full"
+              className="tracking-wider bg-teal-800 hover:bg-teal-700 border-2 hover:border-teal-100 border-opacity-50 transition-colors duration-300 text-white font-bold mt-12 py-1 px-3 rounded-full"
             >
               START
             </button>
           </div>
         </div>
       ) : null}
-      <div className="flex flex-col justify-between min-h-[100dvh] max-w-[500px] mx-auto dark:bg-neutral-800">
+      <div className="flex flex-col justify-between min-h-[100dvh] max-w-[900px] mx-auto dark:bg-neutral-800">
         <header className="py-6 px-6 flex justify-between">
           <h1 className="font-bold font-mono text-2xl text-blue-600">memo</h1>
           <div>
             <button
               onClick={gameInit}
-              className="bg-orange-400 hover:bg-orange-600 transition-colors duration-300 text-white font-bold py-1 px-3 rounded-full"
+              className="tracking-wider bg-teal-800 hover:bg-teal-700 border-2 hover:border-teal-100 border-opacity-50 transition-colors duration-300 text-white font-bold py-1 px-3 rounded-full"
             >
               RESTART
             </button>
             <button
-              className=" bg-green-600 hover:bg-green-500 transition-colors duration-300 text-white font-bold py-1 ml-3 px-3 rounded-full"
+              className="tracking-wider bg-zinc-100 hover:bg-zinc-200 border-2 transition-colors duration-300 text-teal-800 font-bold py-1 ml-3 px-3 rounded-full"
               onClick={() => setMenuOpened((prev) => !prev)}
             >
               LEVELS
             </button>
           </div>
         </header>
-        <main className="h-toWidth max-w-[500px] max-h-[500px] w-full flex flex-col gap-1 items-center justify-center p-2 sm:p-6">
-          {grid?.map((arr, i) => {
-            return (
-              <div
-                className={`flex items-center h-1/4 justify-center w-full gap-1`}
-                key={i}
-              >
-                {arr.map((number, j) => {
-                  return (
-                    <button
-                      className={`w-1/4 h-full group flex items-center justify-center rounded-xl text-white text-3xl ${
-                        defaultGridSize === 6 ? "text-2xl" : ""
-                      } ${
-                        defaultGridSize === 8 ? "text-xl" : ""
-                      } transition-colors duration-200 ${
-                        number.opened ? "bg-green-600" : "bg-blue-600"
-                      } ${number.guessed ? "bg-orange-400" : ""}`}
-                      key={number.id}
-                      id={number.id.toString()}
-                      onClick={(e) => handleCardClick(e, number)}
-                      disabled={number.disabled}
-                    >
-                      <p
-                        className={
-                          number.guessed || number.opened ? "inline" : "hidden"
-                        }
+        <main className="flex items-center justify-center">
+          <section className="h-[100vw] max-w-[500px] lg:max-w-[700px] max-h-[500px] lg:max-h-[700px] w-full flex flex-col gap-1 items-center justify-center p-2 sm:p-6">
+            {grid?.map((arr, i) => {
+              return (
+                <div
+                  className={`flex items-center h-1/4 justify-center w-full gap-1`}
+                  key={i}
+                >
+                  {arr.map((number, j) => {
+                    return (
+                      <button
+                        name="game-button"
+                        className={`w-1/4 h-full group flex items-center justify-center rounded-xl text-white text-3xl ${
+                          defaultGridSize === 6 ? "text-2xl" : ""
+                        } ${
+                          defaultGridSize === 8 ? "text-xl" : ""
+                        } transition-colors duration-200 ${
+                          number.opened ? "bg-green-600" : "bg-blue-600"
+                        } ${number.guessed ? "bg-orange-400" : ""}`}
+                        key={number.id}
+                        id={number.id.toString()}
+                        onClick={(e) => handleCardClick(e, number)}
+                        disabled={number.disabled}
                       >
-                        {number.value}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
-            );
-          })}
+                        <p
+                          className={
+                            number.guessed || number.opened
+                              ? "inline"
+                              : "hidden"
+                          }
+                        >
+                          {number.value}
+                        </p>
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </section>
         </main>
         <footer className="flex gap-1">
           <div className="bg-blue-200 dark:bg-gray-600 w-1/2 my-6 ml-2 sm:ml-6 mr-0 py-3 flex flex-col items-center rounded-md">

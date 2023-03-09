@@ -11,9 +11,13 @@ module.exports = {
         '1/8': `${100/8}%`,
       },
       height: {
-        'toWidth': '100vw',
         '1/6': `${100/6}%`,
         '1/8': `${100/8}%`,
+      },
+      colors: {
+        myPrimary: 'red',
+        myGreen: '#29C58C',
+
       }
     },
   },
